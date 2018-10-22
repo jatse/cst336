@@ -48,7 +48,7 @@
                     <a href="#">Homework 1</a>
                 </td>
                 <td>
-                    <a href="#">Lab 1</a>
+                    <a href="labs/lab1">Lab 1</a>
                 </td>
                 <td>
                     <a href="#">Final</a>
