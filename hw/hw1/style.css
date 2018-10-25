@@ -1,0 +1,102 @@
+body{
+    margin: 0px;
+    background-color: #4e685c;
+    color: #cccccc;
+    font-family: 'Roboto', san-serif;
+}
+/* ---HEADER STYLE--- */
+header{
+    width: 100%;
+    min-width: 560px;
+}
+
+nav{
+    background-color: #333333;
+    height: 60px;
+}
+
+.link{ /*controls link space*/
+    padding: 0px 20px;
+    height: 100%;
+    float: left;
+    text-align: center;
+}
+
+nav a{
+    text-decoration: none;
+    font-weight: 100;
+    font-size: 18pt;
+    color: #cccccc;
+    line-height: 60px;
+}
+
+nav a:hover{
+    color: #4e685c;
+}
+
+#selected-link{
+    background-color: #cccccc;
+    color: #4e685c;
+}
+
+h2{
+    margin: 10px 20px 0px;
+    font-size: 28pt;
+    font-weight: 900;
+}
+
+/* ---MAIN CONTAINER STYLE--- */
+#main-container div{
+    float: left;
+    margin: 10px 20px 40px;
+}
+
+figure{
+    float: left;
+    text-align: center;
+    margin: 10px 20px 40px;
+}
+
+figcaption{
+    font-size: 8pt;
+    color: #333333;
+}
+
+#main-text{
+    line-height: 24pt;
+    width: 360px;
+}
+
+table, th, td{
+    border: 2px #333333 solid;
+    border-collapse: collapse;
+    background-color: #cccccc;
+    color: #4e685c;
+    padding: 5px 10px;
+    font-size: 10pt;
+}
+
+#sources{
+    width: 200px;
+    font-size: 10pt;
+    font-weight: 900;
+    line-height: 18pt;
+}
+
+#sources a{
+    color: #333333;
+}
+
+/* ---FOOTER STYLE--- */
+#footer{
+    width: 100%;
+    height: 40px;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    background-color: #333333;
+    text-align: center;
+    line-height: 40px;
+    font-weight: 100;
+    font-size: 10pt;
+}
