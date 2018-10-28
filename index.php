@@ -56,7 +56,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="#">Homework 2</a>
+                    <a href="hw/hw2">Homework 2</a>
                 </td>
                 <td>
                     <a href="labs/lab2">Lab 2</a>
