@@ -64,7 +64,7 @@
             <?php
                 echo "<img id='player' src='img/character.png' alt='the player' style='position:absolute;top:" . $playerArray[2] . "px;left:" . $playerArray[1] . "px;' />\n";
                 foreach($ghostArray as $ghost){
-                    echo "<img id='ghost' src='img/ghost.png' alt='a ghost' style='position:absolute;top:" . $ghost[1] . "px;left:" . $ghost[0] . "px;' />\n"; 
+                    echo "<img class='ghost' src='img/ghost.png' alt='a ghost' style='position:absolute;top:" . $ghost[1] . "px;left:" . $ghost[0] . "px;' />\n"; 
                 }
             ?>
         </div>

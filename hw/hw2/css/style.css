@@ -57,6 +57,6 @@ h1{ /*the title*/
     z-index: 0;
 }
 
-#ghost{
+.ghost{
     z-index: 1;
 }
