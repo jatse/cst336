@@ -30,11 +30,11 @@
             } else { //BEGIN ELSE
         ?>
         
-        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <?php
                     for($i = 0; $i < 7; $i++){
-                        echo "<li data-target='#carousel-example-generic' data-slide-to='$i'";
+                        echo "<li data-target='#carouselExampleIndicators' data-slide-to='$i'";
                         echo ($i==0)?"class='active'":"";
                         echo "></li>";
                     }
@@ -58,13 +58,14 @@
                 ?>
             </div>
             
-            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
+            
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
             </a>
-            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
             </a>
         </div>
         
