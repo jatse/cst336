@@ -1,17 +1,31 @@
-    body{
-        width:100%;
-        text-align:center;
-        color:yellow;
-    }
-    
-    input {
-        font-size: 3em;
-        color: black;
-        text-align: center;
-    }
+body{
+    width:100%;
+    text-align:center;
+    color:yellow;
+    font-weight:bolder;
+    -webkit-text-stroke: .8px black;
+    background-size: cover;
+}
 
-    
-    #carouselExampleIndicators {
-         margin: 0 auto;   
-         width: 700px;
-    }
+input {
+    font-size: 3em;
+    color: black;
+    text-align: center;
+}
+
+form select{
+    height: 31px;
+}
+
+.btn.btn-default.btn-sm{
+    margin-bottom: 5px;
+}
+
+#carouselExampleIndicators {
+     margin: 0 auto;   
+     width: 700px;
+}
+
+.carousel-inner img{
+    max-height: 500px;
+}
