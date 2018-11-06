@@ -28,7 +28,7 @@
         echo "<input type='submit' class='half-width-form' name='submit' value='Select'/><br>";
         
         //DIV ADDER
-        echo "<input type='text' class='threeqtr-width-form' name='divID' placeholder=' enter div ID. child to selected div'/>";
+        echo "<input type='text' class='threeqtr-width-form' name='divID' placeholder=' enter div ID to embed'/>";
         echo "<input type='submit' class='qtr-width-form' name='submit' value='Add'/><br>";
         
         //DIV DELETER
