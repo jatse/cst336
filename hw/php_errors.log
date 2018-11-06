@@ -1,0 +1,18 @@
+[06-Nov-2018 21:31:47 UTC] PHP Fatal error:  Call to undefined function generateStyle() in /home/ubuntu/workspace/cst336/hw/hw3/output.php on line 12
+[06-Nov-2018 21:31:47 UTC] PHP Stack trace:
+[06-Nov-2018 21:31:47 UTC] PHP   1. {main}() /home/ubuntu/workspace/cst336/hw/hw3/output.php:0
+[06-Nov-2018 21:33:33 UTC] PHP Parse error:  syntax error, unexpected 'generateStyle' (T_STRING), expecting ',' or ';' in /home/ubuntu/workspace/cst336/hw/hw3/output.php on line 7
+[06-Nov-2018 21:34:02 UTC] PHP Fatal error:  Call to undefined function generateStyle() in /home/ubuntu/workspace/cst336/hw/hw3/output.php on line 7
+[06-Nov-2018 21:34:02 UTC] PHP Stack trace:
+[06-Nov-2018 21:34:02 UTC] PHP   1. {main}() /home/ubuntu/workspace/cst336/hw/hw3/output.php:0
+[06-Nov-2018 21:34:43 UTC] PHP Fatal error:  Call to undefined function generateStyle() in /home/ubuntu/workspace/cst336/hw/hw3/output.php on line 7
+[06-Nov-2018 21:34:43 UTC] PHP Stack trace:
+[06-Nov-2018 21:34:43 UTC] PHP   1. {main}() /home/ubuntu/workspace/cst336/hw/hw3/output.php:0
+[06-Nov-2018 21:35:37 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/ubuntu/workspace/cst336/hw/hw3/inc/functions.php on line 233
+[06-Nov-2018 21:35:37 UTC] PHP Stack trace:
+[06-Nov-2018 21:35:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/cst336/hw/hw3/output.php:0
+[06-Nov-2018 21:35:37 UTC] PHP   2. generateStyle() /home/ubuntu/workspace/cst336/hw/hw3/output.php:8
+[06-Nov-2018 21:35:37 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/ubuntu/workspace/cst336/hw/hw3/inc/functions.php on line 262
+[06-Nov-2018 21:35:37 UTC] PHP Stack trace:
+[06-Nov-2018 21:35:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/cst336/hw/hw3/output.php:0
+[06-Nov-2018 21:35:37 UTC] PHP   2. generateDiv() /home/ubuntu/workspace/cst336/hw/hw3/output.php:13

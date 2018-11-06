@@ -1,41 +1,19 @@
 <?php
-    //initializes array with default html container
+    //initializes array with default body container
     function init(){
         $divEntry = array();
-        $divEntry["id"] = "html";
-        $divEntry["color"] = "FF0000";
-        $divEntry["height"] = "100";
-        $divEntry["heightUnit"] = "percent";
-        $divEntry["width"] = "100";
-        $divEntry["widthUnit"] = "percent";
-        $divEntry["position"] = "static";
-        array_push($_SESSION["divs"], $divEntry);
-        
-        //test divs
-        $divEntry["id"] = "test";
+        $divEntry["id"] = "body";
         $divEntry["parent"] = "html";
-        $divEntry["color"] = "00FF00";
-        $divEntry["height"] = "50";
-        $divEntry["heightUnit"] = "px";
-        $divEntry["width"] = "50";
-        $divEntry["widthUnit"] = "px";
-        $divEntry["position"] = "absolute";
-        $divEntry["coordinates"] = array("top", "left", "bottom", "right");
-        $divEntry["top"] = 10;
-        $divEntry["left"] = 20;
-        $divEntry["bottom"] = 30;
-        $divEntry["right"] = 40;
-        $divEntry["topUnit"] = percent;
-        $divEntry["leftUnit"] = px;
-        $divEntry["bottomUnit"] = percent;
-        $divEntry["rightUnit"] = px;
-        $divEntry["float"] = "left";
-        $divEntry["clear"] = "right";
-        
+        $divEntry["color"] = "#FF0000";
+        $divEntry["height"] = "100";
+        $divEntry["heightUnit"] = "%";
+        $divEntry["width"] = "100";
+        $divEntry["widthUnit"] = "%";
+        $divEntry["position"] = "static";
         array_push($_SESSION["divs"], $divEntry);
     }
     
-    //display controls relative to current div
+    //display div manager
     function displayDivPanel(){
         //DIV SELECTOR
         echo "<select name='divName' class='half-width-form'>";
@@ -50,18 +28,19 @@
         echo "<input type='submit' class='half-width-form' name='submit' value='Select'/><br>";
         
         //DIV ADDER
-        echo "<input type='text' class='threeqtr-width-form' name='divID' placeholder=' div ID'/>";
+        echo "<input type='text' class='threeqtr-width-form' name='divID' placeholder=' enter div ID. child to selected div'/>";
         echo "<input type='submit' class='qtr-width-form' name='submit' value='Add'/><br>";
         
         //DIV DELETER
         echo "<input type='submit' class='full-width-form' name='submit' value='Delete'";
-        if($div["id"] = "html"){
+        if($_SESSION["currentDiv"] == "body"){
             echo " disabled";
         }
         echo "/>";
         echo "</form>";
     }
     
+    //display attributes manager
     function displayPositionPanel(){
         //Find current div by id
         foreach($_SESSION["divs"] as $div){
@@ -72,7 +51,7 @@
         
         //COLOR PROPERTY
         echo "<label for='color'>Color</label>";
-        echo "<input type='color' class='threeqtr-width-form' name='color' id='color' value='#";
+        echo "<input type='color' class='threeqtr-width-form' name='color' id='color' value='";
         echo $currentDiv["color"] . "'><br>";
         
         //HEIGHT PROPERTY
@@ -80,7 +59,7 @@
         echo "<input type='number' class='half-width-form' id='height' name='height' ";
         echo "value='" . $currentDiv["height"] . "' />";
         echo "<select name='heightUnit' class='qtr-width-form'>";
-        foreach(array("px", "percent") as $unit){
+        foreach(array("px", "%") as $unit){
             echo "<option value='" . $unit . "'";
             if($currentDiv["heightUnit"] == $unit){
                 echo " selected='selected'";
@@ -94,7 +73,7 @@
         echo "<input type='number' class='half-width-form' id='width' name='width' ";
         echo "value='" . $currentDiv["width"] . "' />";
         echo "<select name='widthUnit' class='qtr-width-form'>";
-        foreach(array("px", "percent") as $unit){
+        foreach(array("px", "%") as $unit){
             echo "<option value='" . $unit . "'";
             if($currentDiv["widthUnit"] == $unit){
                 echo " selected='selected'";
@@ -107,8 +86,8 @@
         echo "<label for='position'>Position</label>";
         echo "<select name='position' class='threeqtr-width-form' id='position'>";
         foreach(array("static", "relative", "absolute", "fixed") as $position){
-            echo "<option value=" . $position . "'";
-            if($currentDiv == $position){
+            echo "<option value='" . $position . "'";
+            if($currentDiv["position"] == $position){
                 echo " selected='selected'";
             }
             echo ">" . $position . "</option>";
@@ -124,7 +103,7 @@
             echo "<input type='number' class='qtr-width-form' name='top' id='top' ";
             echo "value='" . $currentDiv["top"] . "' />";
             echo "<select name='topUnit' class='qtr-width-form'>";
-            foreach(array("px", "percent") as $unit){
+            foreach(array("px", "%") as $unit){
                 echo "<option value='" . $unit . "'";
                 if($currentDiv["topUnit"] == $unit){
                     echo " selected='selected'";
@@ -135,7 +114,7 @@
             echo "><label for='top'> Top</label>";
             echo "<input type='number' class='qtr-width-form' name='top' id='top' />";
             echo "<select name='topUnit' class='qtr-width-form'>";
-            foreach(array("px", "percent") as $unit){
+            foreach(array("px", "%") as $unit){
                 echo "<option value='" . $unit . "'>" . $unit . "</option>";
             }
         }
@@ -150,7 +129,7 @@
             echo "<input type='number' class='qtr-width-form' name='left' id='left' ";
             echo "value='" . $currentDiv["left"] . "' />";
             echo "<select name='leftUnit' class='qtr-width-form'>";
-            foreach(array("px", "percent") as $unit){
+            foreach(array("px", "%") as $unit){
                 echo "<option value='" . $unit . "'";
                 if($currentDiv["leftUnit"] == $unit){
                     echo " selected='selected'";
@@ -161,7 +140,7 @@
             echo "><label for='left'> Left</label>";
             echo "<input type='number' class='qtr-width-form' name='left' id='left' />";
             echo "<select name='leftUnit' class='qtr-width-form'>";
-            foreach(array("px", "percent") as $unit){
+            foreach(array("px", "%") as $unit){
                 echo "<option value='" . $unit . "'>" . $unit . "</option>";
             }
         }
@@ -176,7 +155,7 @@
             echo "<input type='number' class='qtr-width-form' name='bottom' id='bottom' ";
             echo "value='" . $currentDiv["bottom"] . "' />";
             echo "<select name='bottomUnit' class='qtr-width-form'>";
-            foreach(array("px", "percent") as $unit){
+            foreach(array("px", "%") as $unit){
                 echo "<option value='" . $unit . "'";
                 if($currentDiv["bottomUnit"] == $unit){
                     echo " selected='selected'";
@@ -187,7 +166,7 @@
             echo "><label for='bottom'> Bottom</label>";
             echo "<input type='number' class='qtr-width-form' name='bottom' id='bottom' />";
             echo "<select name='bottomUnit' class='qtr-width-form'>";
-            foreach(array("px", "percent") as $unit){
+            foreach(array("px", "%") as $unit){
                 echo "<option value='" . $unit . "'>" . $unit . "</option>";
             }
         }
@@ -202,7 +181,7 @@
             echo "<input type='number' class='qtr-width-form' name='right' id='right' ";
             echo "value='" . $currentDiv["right"] . "' />";
             echo "<select name='rightUnit' class='qtr-width-form'>";
-            foreach(array("px", "percent") as $unit){
+            foreach(array("px", "%") as $unit){
                 echo "<option value='" . $unit . "'";
                 if($currentDiv["rightUnit"] == $unit){
                     echo " selected='selected'";
@@ -213,7 +192,7 @@
             echo "><label for='right'> Right</label>";
             echo "<input type='number' class='qtr-width-form' name='right' id='right' />";
             echo "<select name='rightUnit' class='qtr-width-form'>";
-            foreach(array("px", "percent") as $unit){
+            foreach(array("px", "%") as $unit){
                 echo "<option value='" . $unit . "'>" . $unit . "</option>";
             }
         }
@@ -243,9 +222,50 @@
                 
         //UPDATE BUTTON
         echo "<input type='submit' class='full-width-form' name='submit' value='Update' ";
-        if($currentDiv["id"] == "html"){
+        if($currentDiv["id"] == "body"){
             echo "disabled";
         }
         echo "/>";
+    }
+    
+    //generate css styles. offset in pixels for control panel
+    function generateStyle($offset = 0){
+        foreach($_SESSION["divs"] as $div){
+            echo "#" . $div["id"] . "{";
+            echo "border: 3px solid " . $div["color"] . ";";
+            echo "height: " . $div["height"] . $div["heightUnit"] . ";";
+            echo "width: " . $div["width"] . $div["widthUnit"] . ";";
+            echo "position: " . $div["position"] . ";";
+            if(isset($div["coordinates"])){
+                foreach($div["coordinates"] as $coord){
+                    echo $coord . ": " . $div[$coord] . $div[$coord . "Unit"] . ";";
+                }
+            }
+            
+            //account for fixed positioning overlap with controls
+            if($div["position"] == fixed && in_array("left", $div["coordinates"]) && $offset > 0){
+                echo "left: calc(" . $offset . "px + " . $div["left"] . $div["leftUnit"] . ") !important;";
+            }
+            
+            if(isset($div["float"])){
+               echo "float: " . $div["float"] . ";"; 
+            }
+            if(isset($div["clear"])){
+               echo "clear: " . $div["clear"] . ";"; 
+            }
+            echo "}";
+        }
+    }
+    
+    //generate divs recursively
+    function generateDiv($parent = "html"){
+        foreach($_SESSION["divs"] as $div){
+            if($div["parent"] == $parent){
+                echo "<div class='generatedDiv' id='" . $div["id"] . "'>";
+                //insert child divs
+                generateDiv($div["id"]);
+                echo "</div>";
+            }
+        }
     }
 ?>
