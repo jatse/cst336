@@ -64,7 +64,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="#">Homework 3</a>
+                    <a href="hw/hw3">Homework 3</a>
                 </td>
                 <td>
                     <a href="labs/lab3">Lab 3</a>

@@ -1,0 +1,61 @@
+/* --- LAYOUT --- */
+html, body{
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
+}
+
+html{
+    background-image: url("../img/20pxGrid.png");
+    background-repeat: repeat;
+}
+
+/* --- GENERAL FORM RULES --- */
+.full-width-form{
+    width: 100%;
+}
+
+.half-width-form{
+    width: 50%;
+}
+
+.threeqtr-width-form{
+    width: 75%;
+}
+
+.qtr-width-form{
+    width: 25%;
+}
+
+select, form input, hr, form label{
+    margin: 2px 0px;
+    box-sizing: border-box;
+    font-size: 8pt;
+    padding: 1px;
+}
+
+/* --- SECTION RULES --- */
+#controlArea{
+    width: 200px;
+    background-color: #A4C5DC;
+    padding: 10px;
+    height: 100%;
+    position: fixed;
+}
+
+#controlArea h1{
+    margin: 0px;
+    padding: 10px 0px;
+    font-weight: 800;
+    font-size: 18pt;
+    line-height: 18pt;
+    text-align: center;
+}
+
+#positionPanel{
+    text-align: right;
+    font-size: 8pt;
+    line-height: 18pt;
+}
+
