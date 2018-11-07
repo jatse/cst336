@@ -61,6 +61,8 @@
                 <td>
                     <a href="labs/lab2">Lab 2</a>
                 </td>
+                <td>
+                </td>
             </tr>
             <tr>
                 <td>
@@ -68,6 +70,8 @@
                 </td>
                 <td>
                     <a href="labs/lab3">Lab 3</a>
+                </td>
+                <td>
                 </td>
             </tr>
             <tr>
@@ -77,37 +81,43 @@
                 <td>
                     <a href="labs/lab4">Lab 4</a>
                 </td>
+                <td>
+                </td>
             </tr>
             <tr>
                 <td>
-                    <a href="#">Homework 5</a>
                 </td>
                 <td>
                     <a href="labs/lab5">Lab 5</a>
                 </td>
+                <td>
+                </td>
             </tr>
             <tr>
                 <td>
-                    <a href="#">Homework 6</a>
                 </td>
                 <td>
                     <a href="#">Lab 6</a>
                 </td>
+                <td>
+                </td>
             </tr>
             <tr>
                 <td>
-                    <a href="#">Homework 7</a>
                 </td>
                 <td>
                     <a href="#">Lab 7</a>
                 </td>
+                <td>
+                </td>
             </tr>
             <tr>
                 <td>
-                    <a href="#">Homework 8</a>
                 </td>
                 <td>
                     <a href="#">Lab 8</a>
+                </td>
+                <td>
                 </td>
             </tr>
         </table>
