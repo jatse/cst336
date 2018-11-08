@@ -29,7 +29,7 @@
             echo "Jason Tse's CST 336 Directory";
         ?>
         <br>
-        <hr width="28%" />
+        <hr width="20%" />
         <br>
         <table>
             <tr>
@@ -97,7 +97,7 @@
                 <td>
                 </td>
                 <td>
-                    <a href="#">Lab 6</a>
+                    <a href="labs/lab6/login.php">Lab 6</a>
                 </td>
                 <td>
                 </td>
