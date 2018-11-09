@@ -27,7 +27,7 @@
         $stmt = $conn->prepare($sql);
         $stmt->execute($np);
         
-        echo "Product successfully updated!";
+        echo "<p class='alert alert-success' id='message'>Product successfully updated!</p>";
     }
     
     if(isset($_GET["productId"])){
@@ -68,23 +68,26 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css" type="text/css" />
         <title>Update Product Page</title>
     </head>
     <body>
-        <form>
-            <input type="hidden" name="productId" value="<?=$product['productId']?>" />
-            <strong>Product name</strong><input type="text" class="form-control" name="productName" value="<?=$product['productName']?>" /><br>
-            <strong>Description</strong><textarea class="form-control" name="description" col=50 rows=4><?=$product['productDescription']?></textarea><br>
-            <strong>Price</strong><input type="text" class="form-control" name="price" value="<?=$product['price']?>" /><br>
-            <strong>Category</strong><select class="form-control" name="catId"/>
-                <option value=""></option>
-                <?= getCategories($product['catId']); ?>
-            </select><br>
-            <strong>Set Image Url</strong><input type="text" class="form-control" name="productImage" value="<?=$product['productImage']?>"><br>
-            <input type="submit" name="updateProduct" class="btn btn-primary" value="Update Product">
-        </form>
-        <form action="admin.php">
-            <input type="submit" class="btn btn-secondary" value="Back" />
-        </form>
+        <div class="default-form">
+            <form>
+                <input type="hidden" name="productId" value="<?=$product['productId']?>" />
+                <strong>Product name</strong><input type="text" class="form-control" name="productName" value="<?=$product['productName']?>" /><br>
+                <strong>Description</strong><textarea class="form-control" name="description" col=50 rows=4><?=$product['productDescription']?></textarea><br>
+                <strong>Price</strong><input type="text" class="form-control" name="price" value="<?=$product['price']?>" /><br>
+                <strong>Category</strong><select class="form-control" name="catId"/>
+                    <option value=""></option>
+                    <?= getCategories($product['catId']); ?>
+                </select><br>
+                <strong>Set Image Url</strong><input type="text" class="form-control" name="productImage" value="<?=$product['productImage']?>"><br>
+                <input type="submit" name="updateProduct" class="btn btn-primary" value="Update Product">
+            </form>
+            <form action="admin.php" class="inlineButton">
+                <input type="submit" class="btn btn-secondary" value="Back" />
+            </form>
+        </div>
     </body>
 </html>

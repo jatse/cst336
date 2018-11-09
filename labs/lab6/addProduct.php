@@ -27,7 +27,7 @@
         $stmt = $conn->prepare($sql);
         $stmt-> execute($np);
         
-        echo "Product successfully added!";
+        echo "<p class='alert alert-success' id='message'>Product successfully added!</p>";
     }
 
     function getCategories(){
@@ -50,22 +50,25 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css" type="text/css" />
         <title>Add Product Page</title>
     </head>
     <body>
-        <form>
-            <strong>Product name</strong><input type="text" class="form-control" name="productName" /><br>
-            <strong>Description</strong><textarea class="form-control" name="description" col=50 rows=4></textarea><br>
-            <strong>Price</strong><input type="text" class="form-control" name="price"/><br>
-            <strong>Category</strong><select class="form-control" name="catId"/>
-                <option value=""></option>
-                <?= getCategories(); ?>
-            </select><br>
-            <strong>Set Image Url</strong><input type="text" class="form-control" name="productImage"><br>
-            <input type="submit" name="submitProduct" class="btn btn-primary" value="Add Product">
-        </form>
-        <form action="admin.php">
-            <input type="submit" class="btn btn-secondary" value="Back" />
-        </form>
+        <div class="default-form">
+            <form>
+                <strong>Product name</strong><input type="text" class="form-control" name="productName" /><br>
+                <strong>Description</strong><textarea class="form-control" name="description" col=50 rows=4></textarea><br>
+                <strong>Price</strong><input type="text" class="form-control" name="price"/><br>
+                <strong>Category</strong><select class="form-control" name="catId"/>
+                    <option value=""></option>
+                    <?= getCategories(); ?>
+                </select><br>
+                <strong>Set Image Url</strong><input type="text" class="form-control" name="productImage"><br>
+                <input type="submit" name="submitProduct" class="btn btn-primary" value="Add Product">
+            </form>
+            <form action="admin.php" class="inlineButton">
+                <input type="submit" class="btn btn-secondary" value="Back" />
+            </form>
+        </div>
     </body>
 </html>

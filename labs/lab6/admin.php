@@ -24,6 +24,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/style.css" type="text/css" />
         <title>Admin Page</title>
         <script>
             function confirmDelete(){
@@ -32,13 +33,14 @@
         </script>
     </head>
     <body>
-        <form action="addProduct.php">
-            <input type="submit" class="btn btn-secondary" id="beginning" name="addproduct" value="Add Product" />
-        </form>
-        <form action="logout.php">
-            <input type="submit" class="btn btn-secondary" id="beginning" value="Logout" />
-        </form>
-        
+        <div class="buttonBar">
+            <form action="logout.php">
+                <input type="submit" class="btn btn-secondary" id="logoutButton" value="Logout" />
+            </form>
+            <form action="addProduct.php">
+                <input type="submit" class="btn btn-primary" id="addButton" name="addproduct" value="Add Product" />
+            </form>
+        </div>
         <?php
             $records = displayAllProducts();
             echo "<table class='table table-hover'>";

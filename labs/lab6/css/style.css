@@ -1,0 +1,29 @@
+.default-form{
+    margin: 5% auto;
+    padding: 30px 20px 70px;
+    width: 60%;
+    min-width: 300px;
+    border: 1px solid #DDD;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#message{
+    text-align: center;
+}
+
+.buttonBar{
+    width: 100%;
+    text-align: right;
+    padding: 8px 0;
+}
+
+.buttonBar form{
+    padding: 0px 8px;
+    float: right;
+}
+
+.inlineButton{
+    float: right;
+    margin-top: -34px;
+}
