@@ -12,32 +12,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
-        <div class="container text-center">
+        <div class="mainContainer">
             <header>
                 <h1>Hangman</h1>
                 <h4>JavaScript Edition</h4>
             </header>
             
-            <div id="word"></div>
-            
-            <div id="letters">
-                
-            </div>
-            
-            <button class="hintBtn btn btn-warning">Get Hint!</button>
-            
-            <div id="won">
-                <h2>You Won!</h2>
-                <button class="replayBtn btn btn-success">Play Again</button>
-            </div>
-            
-            <div id="lost">
-                <h2>You Lost!</h2>
-                <button class="replayBtn btn btn-warning">Play Again</button>
-            </div>
-            
             <div id="man">
                 <img src="img/stick_0.png" id="hangImg">
+            </div>
+            
+            <div id="uiPanel">
+                <div id="word"></div>
+                
+                <div id="letters"></div>
+                
+                <br>
+                <button id="hintBtn" class="btn btn-warning">Hint. Cost: 1</button>
+                <div id="hint"></div>
+                
+                <div id="won">
+                    <h2>You Won!</h2>
+                    <button class="replayBtn btn btn-success">Play Again</button>
+                </div>
+                
+                <div id="lost">
+                    <h2>You Lost!</h2>
+                    <button class="replayBtn btn btn-warning">Play Again</button>
+                </div>
             </div>
             
         </div>

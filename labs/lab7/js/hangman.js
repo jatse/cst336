@@ -22,10 +22,9 @@ $(".replayBtn").on("click", function(){
     location.reload();
 });
 
-$(".hintBtn").on("click", function(){
+$("#hintBtn").on("click", function(){
     $(this).hide();
-    $("#word").append("<br>");
-    $("#word").append("<span class='hint'>Hint: " + selectedHint + "</span>");
+    $("#hint").append("<span class='hint'>Hint: " + selectedHint + "</span>");
     
     remainingGuesses -= 1;
     updateMan()
@@ -65,6 +64,8 @@ function updateBoard(){
     for(var letter of board){
         document.getElementById("word").innerHTML += letter + " ";
     }
+    
+    document.getElementById("word").innerHTML += "<br>";
 }
 
 //Creates the letter buttons in the letters div
@@ -120,6 +121,8 @@ function updateMan(){
 //Ends game by hiding letters and displaying win or loss
 function endGame(win){
     $("#letters").hide();
+    $("#hintBtn").hide();
+    $("#hint").hide();
     
     if(win){
         $("#won").show();
