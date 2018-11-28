@@ -14,25 +14,27 @@ body{
 }
 
 .movingBG{
-	width: 4000px;
 	height: 536px;
 	position: absolute;
 	top: 0px;
 }
 
 #bg3{
+	width:2838px;
 	background-image: url("../img/bg3.png");
 	background-repeat: repeat-x;	
 }
 
 #bg2{
+	width:3783px;
 	background-image: url("../img/bg2.png");
-	background-repeat: repeat-x;	
+	background-repeat: repeat-x;
 }
 
 #bg1{
+	width:5676px;
 	background-image: url("../img/bg1.png");
-	background-repeat: repeat-x;	
+	background-repeat: repeat-x;
 }
 
 #lifebar{
@@ -68,6 +70,6 @@ body{
 	color: white;
 }
 
-.card, .enemy{
+.card, .enemy, #boss{
 	position: absolute;
 }

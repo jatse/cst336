@@ -9,11 +9,12 @@ var leftArrowDown = false;
 var rightArrowDown = false;
 var upArrowDown = false;
 var gameTimer;
+var bossHP;
 
 const GRAVITY = 1;
 var fallSpeed = 0;
 
-var level = 1;
+var level = 0;
 
 var lifebar;
 var numLives = 0;
@@ -79,13 +80,7 @@ function gameloop(){
 		});
 		
 		if(!sideHit){
-			$(".platform").each(function(){
-				$(this).css("left", "+=" + 5 + "px");
-			});
-			$("#goal").css("left", "+=" + 5 + "px");
-			$("#player").css("left", "+=" + 5 + "px");
-			$(".card").css("left", "+=" + 5 + "px");
-			$(".enemy").css("left", "+=" + 5 + "px");
+			$("#goal, #player, .platform, .card, .enemy, #boss").css("left", "+=" + 5 + "px");
 			direction = 1;
 			parallaxShift(direction);
 		} else {
@@ -109,13 +104,7 @@ function gameloop(){
 		});
 		
 		if(!sideHit){
-			$(".platform").each(function(){
-				$(this).css("left", "-=" + 5 + "px");
-			});
-			$("#goal").css("left", "-=" + 5 + "px");
-			$("#player").css("left", "-=" + 5 + "px");
-			$(".card").css("left", "-=" + 5 + "px");
-			$(".enemy").css("left", "-=" + 5 + "px");
+			$("#goal, #player, .platform, .card, .enemy, #boss").css("left", "-=" + 5 + "px");
 			direction = -1;
 			parallaxShift(direction);
 		} else {
@@ -185,23 +174,86 @@ function gameloop(){
 	    $(".enemy").each(function(){
 	    	if(hittest(card.get(0), $(this).get(0))){
 	    		card.addClass("dead");
+	    		$(this).removeClass("enemyLeft enemyRight");
 	    		$(this).addClass("dying");
 	    	}
 	    });
 	});
 	
+	//check if card hits boss
+	if($("#boss").length > 0){
+		$(".card").each(function() {
+		    var card = $(this);
+	    	if(hittest(card.get(0), $("#boss").get(0))){
+	    		card.addClass("dead");
+	    		bossHP -= 1;
+	    	}
+	    	if(bossHP <= 0){
+	    		$("#boss").addClass("dying");
+	    	}
+		});
+	}
+	
 	//enemy dying animation
 	$(".dying").each(function() {
 	    $(this).css("top", "+=" + 15 + "px");
-	    $(this).css({"-webkit-transform" : "rotate(-15deg)",
-                	"-moz-transform" : "rotate(-15deg)",
-                	"-ms-transform" : "rotate(-15deg)",
-                	"transform" : "rotate(-15deg)"});
-                	
         if(parseInt($(this).css("top")) > 536){
 	    	$(this).removeClass("dying");
 	    	$(this).addClass("dead");
 	    }        	
+	});
+	
+	//boss spawn enemy when player in range
+	if($("#boss").length > 0 && !$("#boss").hasClass("dying")){
+		if((parseInt($("#boss").css("left")) - parseInt($("#player").css("left"))) < 740){
+			//maxmium of 3 enemies. spawn if random number matches
+			var randomNum = Math.floor((Math.random() * 30) + 1)
+			if($(".enemy").length < 3 && randomNum == 1){
+				spawnEnemy(parseInt($("#boss").css("left")) + 150, 425, "enemyLeft");
+			}
+		}
+	}
+	
+	//enemy move
+	$(".enemyLeft, .enemyRight").each(function() {
+		var enemy = $(this);
+		
+		//animate horizontal enemy
+		if(enemy.hasClass("enemyRight")){
+			enemy.css("left", "+=" + 10);
+			//if collide, move back and turn
+			$(".platform").each(function() {
+			    if(hittest($(this).get(0), enemy.get(0))){
+			    	enemy.css("left", "-=" + 10);
+			    	enemy.removeClass("mirror enemyRight");
+			    	enemy.addClass("enemyLeft");
+			    }
+			});
+		}
+		else{
+			enemy.css("left", "-=" + 10);
+			//if collide, move back and turn
+			$(".platform").each(function() {
+			    if(hittest($(this).get(0), enemy.get(0))){
+			    	enemy.css("left", "+=" + 10);
+			    	enemy.removeClass("enemyLeft");
+			    	enemy.addClass("enemyRight mirror");
+			    }
+			});
+		}
+		
+		//animate falling enemy
+		enemy.css("top", "+=" + 10);
+		$(".platform").each(function() {
+		    if(hittest($(this).get(0), enemy.get(0))){
+		    	enemy.css("top", (parseInt($(this).css("top"))-parseInt(enemy.css("height"))) + "px");
+		    }
+		});
+		//enemy dead if fall too far
+		if(parseInt(enemy.css("top")) > 536){
+	    	$(this).removeClass("enemyLeft enemyRight");
+	    	$(this).addClass("dead");
+	    }  
 	});
 	
 	//clean up dead objects
@@ -222,13 +274,17 @@ function gameloop(){
 		removeLife();
 	}
 	
-	//check enemy collision
+	//check enemy and boss collision
 	$(".enemy").each(function() {
 	    if(hittest($(this).get(0), player)){
 	    	clearInterval(gameTimer);
 			removeLife();
 	    }
 	});
+	if($("#boss").length > 0 && hittest($("#boss").get(0), player)){
+    	clearInterval(gameTimer);
+		removeLife();
+    }
 }
 
 
@@ -244,12 +300,15 @@ function nextLevel(){
 	//reposition player and background
 	$("#player").css("left", "190px");
 	$("#player").css("top", "50px");
-	$(".movingBG").css("left", "0px");
+	$(".bg1").css("left", "1892px");
+	$(".bg2").css("left", "1261px");
+	$(".bg3").css("left", "946px");
 	
 	//clear platforms, cards, and enemies
 	$(".platform").remove();
 	$(".card").remove();
 	$(".enemy").remove();
+	$("#boss").remove();
 	$(".dead").remove();
 	
 	//level based setup
@@ -287,7 +346,7 @@ function nextLevel(){
 		addPlatform(1350, 400, 100, 32);
 		addPlatform(1550, 400, 300, 32);
 		addPlatform(1450, 200, 400, 32);
-		addPlatform(1150, 568, 2000, 64);
+		addPlatform(1150, 568, 2200, 64);
 		addPlatform(2075, 400, 75, 32);
 		addPlatform(2125, 225, 25, 32);
 		addPlatform(2150, 100, 200, 512);
@@ -302,18 +361,26 @@ function nextLevel(){
 		spawnEnemy(1600,338, "mirror");
 		spawnEnemy(1720,338);
 		spawnEnemy(2070,163);
-		spawnEnemy(2055,506);
+		spawnEnemy(1300,500, "enemyRight mirror");
+		spawnEnemy(2045,500, "enemyLeft");
 		spawnEnemy(2200,38);
 		spawnEnemy(2650,506);
 		spawnEnemy(2550,506, "mirror");
 	}
 	
 	else if(level == 3){
-		$("#goal").css("left", "1000px");
-		$("#goal").css("top", "340px");
+		$("#goal").css("left", "2950px");
+		$("#goal").css("top", "390px");
 		
-		platforms = new Array();
-		addPlatform(100, 536, 2000, 64);
+		addPlatform(325, 450, 125, 32);
+		addPlatform(350, 300, 100, 32);
+		addPlatform(375, 150, 75, 32);
+		addPlatform(400, 50, 880, 576);
+		addPlatform(100, 568, 3000, 64);
+		addPlatform(2000, 490, 440, 128);
+		
+		bossHP = 20;
+		spawnBoss(2000,0);
 	}
 	
 	gameTimer = setInterval(gameloop, 30);
@@ -332,6 +399,12 @@ function hittest(a, b){
 	if(a.id == "goal" || b.id == "goal"){
 		aXMod = 65;
 		bXMod = 65;
+	}
+	if(a.id == "boss"){
+		aXMod = 125;
+	}
+	if(b.id == "boss"){
+		bXMod = 125;
 	}
 	
 	var aX1 = parseInt(a.style.left) + aXMod;
@@ -364,11 +437,20 @@ function hittest(a, b){
 	else return false;
 }
 
-//move background
+//move background, infinitely
 function parallaxShift(direction){
 	$("#bg1").css("left", "+=" + (direction * 5));
+	if(parseInt($("#bg1").css("left")) > 3784){
+		$("#bg1").css("left", "-=" + 1892);	
+	}
 	$("#bg2").css("left", "+=" + (direction * 3));
+	if(parseInt($("#bg2").css("left")) > 2522){
+		$("#bg1").css("left", "-=" + 1261);	
+	}
 	$("#bg3").css("left", "+=" + (direction * 1));
+	if(parseInt($("#bg3").css("left")) > 1892){
+		$("#bg1").css("left", "-=" + 946);	
+	}
 }
 
 //SPAWNERS
@@ -422,5 +504,13 @@ function spawnEnemy(x, y, enemyType=""){
 																	"width:92px; height:62px;' />";
 	
 	$("#gameWindow").append($(enemy));
+}
+
+function spawnBoss(x, y){
+	var boss = "<img id='boss' src='img/enemy_boss.gif' style='left:" + x + "px;" +
+																	"top:" + y + "px;" +
+																	"width:440px; height:490px;' />";
+	
+	$("#gameWindow").append($(boss));
 }
 	
