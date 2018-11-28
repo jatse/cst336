@@ -3,17 +3,17 @@ var player;
 var walking = false;
 var onGround = false;
 var idle = false;
+var direction = -1;
 var goal;
 var leftArrowDown = false;
 var rightArrowDown = false;
 var upArrowDown = false;
-var downArrowDown = false;
 var gameTimer;
 
 const GRAVITY = 1;
 var fallSpeed = 0;
 
-var level = 0;
+var level = 1;
 
 var lifebar;
 var numLives = 0;
@@ -23,14 +23,16 @@ document.addEventListener('keydown', function(event){
 	if(event.keyCode==37) leftArrowDown = true;
 	if(event.keyCode==39) rightArrowDown = true;
 	if(event.keyCode==38) upArrowDown = true;
-	if(event.keyCode==40) downArrowDown = true;
 });
 
 document.addEventListener('keyup', function(event){
 	if(event.keyCode==37) leftArrowDown = false;
 	if(event.keyCode==39) rightArrowDown = false;
 	if(event.keyCode==38) upArrowDown = false;
-	if(event.keyCode==40) downArrowDown = true;
+	if((event.keyCode==40 || event.keyCode==32) && $("#player").length == 1){
+		//throws card with down or space button, when player exists
+		spawnCard();
+	}
 });
 
 //FUNCTIONS
@@ -43,8 +45,8 @@ function init(){
 	
 	//spawn player
 	player = $("#player").get(0); //for easier passing to hit tests
-	$("#player").css("width", "110px");
-	$("#player").css("height", "185px");
+	$("#player").css("width", "71px");
+	$("#player").css("height", "120px");
 	$("#player").attr("src","img/player_jump.gif");
 	
 	//spawn goal
@@ -82,7 +84,10 @@ function gameloop(){
 			});
 			$("#goal").css("left", "+=" + 5 + "px");
 			$("#player").css("left", "+=" + 5 + "px");
-			parallaxShift(1);
+			$(".card").css("left", "+=" + 5 + "px");
+			$(".enemy").css("left", "+=" + 5 + "px");
+			direction = 1;
+			parallaxShift(direction);
 		} else {
 			$("#player").css("left", "+=" + 5 + "px");
 		}
@@ -109,7 +114,10 @@ function gameloop(){
 			});
 			$("#goal").css("left", "-=" + 5 + "px");
 			$("#player").css("left", "-=" + 5 + "px");
-			parallaxShift(-1);
+			$(".card").css("left", "-=" + 5 + "px");
+			$(".enemy").css("left", "-=" + 5 + "px");
+			direction = -1;
+			parallaxShift(direction);
 		} else {
 			$("#player").css("left", "-=" + 5 + "px");
 		}
@@ -153,6 +161,52 @@ function gameloop(){
 		}
 	});
 	
+	//PROJECTILE AND ENEMY MOVEMENT
+	//move cards
+	$(".card").each(function() {
+	    if(!$(this).hasClass("dead")){
+	    	if($(this).hasClass("flyRight")){
+	    		$(this).css("left", "+=" + 10);
+	    	} 
+	    	else{
+	    		$(this).css("left", "-=" + 10);
+	    	}
+	    	
+	    	//check if flown to far
+	    	if(parseInt($(this).css("left")) > 1100 || parseInt($(this).css("left")) < 0){
+	    		$(this).addClass("dead");
+	    	}
+	    }
+	});
+	
+	//check if card hits enemy
+	$(".card").each(function() {
+	    var card = $(this);
+	    $(".enemy").each(function(){
+	    	if(hittest(card.get(0), $(this).get(0))){
+	    		card.addClass("dead");
+	    		$(this).addClass("dying");
+	    	}
+	    });
+	});
+	
+	//enemy dying animation
+	$(".dying").each(function() {
+	    $(this).css("top", "+=" + 15 + "px");
+	    $(this).css({"-webkit-transform" : "rotate(-15deg)",
+                	"-moz-transform" : "rotate(-15deg)",
+                	"-ms-transform" : "rotate(-15deg)",
+                	"transform" : "rotate(-15deg)"});
+                	
+        if(parseInt($(this).css("top")) > 536){
+	    	$(this).removeClass("dying");
+	    	$(this).addClass("dead");
+	    }        	
+	});
+	
+	//clean up dead objects
+	$(".dead").remove();
+	
 	//END GAME CHECKS
 	if(hittest(player, goal)){
 		clearInterval(gameTimer);
@@ -163,55 +217,40 @@ function gameloop(){
 			nextLevel();
 		}
 	}
-	else if(parseInt(player.style.top) > 400){
+	else if(parseInt(player.style.top) > 536){
 		clearInterval(gameTimer);
 		removeLife();
 	}
-}
-
-function addLife(){
-	numLives++;
-	$("#lifebar").append("<img src='img/heart.gif' class='life' />")
-}
-
-function removeLife(){
-	if(numLives > 0){
-		numLives--;
-		$("#lifebar").children().last().remove();
-		level--;
-		nextLevel();
-	} else{
-		gameWindow.innerHTML = "<br><br><br>You Lose.";
-		$("#gameWindow").addClass("msgGameOver");
-	}
-}
-
-function addPlatform(x, y, w, h){
-	var platform = "<div class='platform' style='left:" + x + "px;" +
-												"top:" + y + "px;" +
-												"width:" + w + "px;" +
-												"height:" + h + "px;'></div>";
 	
-	$("#gameWindow").append($(platform));
+	//check enemy collision
+	$(".enemy").each(function() {
+	    if(hittest($(this).get(0), player)){
+	    	clearInterval(gameTimer);
+			removeLife();
+	    }
+	});
 }
+
 
 function nextLevel(){
 	level++;
 	
 	//reset controls
-	fallSpeed: 0;
+	fallSpeed = 0;
 	leftArrowDown = false;
 	rightArrowDown = false;
 	upArrowDown = false;
-	downArrowDown = false;
 	
 	//reposition player and background
 	$("#player").css("left", "190px");
 	$("#player").css("top", "50px");
 	$(".movingBG").css("left", "0px");
 	
-	//clear platforms
+	//clear platforms, cards, and enemies
 	$(".platform").remove();
+	$(".card").remove();
+	$(".enemy").remove();
+	$(".dead").remove();
 	
 	//level based setup
 	if(level == 1){
@@ -225,17 +264,48 @@ function nextLevel(){
 		addPlatform(1100, 400, 50, 256);
 		addPlatform(1250, 400, 50, 256);
 		addPlatform(1400, 400, 50, 256);
-		addPlatform(1550, 250, 200, 64);
+		addPlatform(1550, 250, 300, 64);
+		addPlatform(1600, 442, 275, 64);
 		addPlatform(1750, 122, 100, 512);
 		addPlatform(700, 536, 300, 64);
-		addPlatform(2120, 536, 500, 64);
+		addPlatform(2110, 536, 500, 64);
+		
+		spawnEnemy(400,473);
+		spawnEnemy(1380,338);
 	}
 	
 	else if(level == 2){
-		$("#goal").css("left", "1000px");
-		$("#goal").css("top", "340px");
+		$("#goal").css("left", "3200px");
+		$("#goal").css("top", "370px");
 		
-		addPlatform(0, 536, 2000, 64);
+		addPlatform(100, 200, 300, 64);
+		addPlatform(300, 400, 200, 256);
+		addPlatform(600, 568, 350, 64);
+		addPlatform(950, 200, 200, 512);
+		addPlatform(850, 300, 200, 512);
+		addPlatform(750, 400, 200, 256);
+		addPlatform(1350, 400, 100, 32);
+		addPlatform(1550, 400, 300, 32);
+		addPlatform(1450, 200, 400, 32);
+		addPlatform(1150, 568, 2000, 64);
+		addPlatform(2075, 400, 75, 32);
+		addPlatform(2125, 225, 25, 32);
+		addPlatform(2150, 100, 200, 512);
+		addPlatform(2250, 250, 200, 512);
+		addPlatform(2350, 400, 200, 256);
+		addPlatform(2740, 350, 100, 512);
+		addPlatform(3000, 400, 100, 512);
+		
+		spawnEnemy(750,338);
+		spawnEnemy(850,238);
+		spawnEnemy(950,138);
+		spawnEnemy(1600,338, "mirror");
+		spawnEnemy(1720,338);
+		spawnEnemy(2070,163);
+		spawnEnemy(2055,506);
+		spawnEnemy(2200,38);
+		spawnEnemy(2650,506);
+		spawnEnemy(2550,506, "mirror");
 	}
 	
 	else if(level == 3){
@@ -256,15 +326,13 @@ function hittest(a, b){
 	var bXMod = 0;
 	
 	if(a.id == "player" || b.id == "player"){
-		aXMod = 35;
-		bXMod = 35;
+		aXMod = 25;
+		bXMod = 25;
 	}
 	if(a.id == "goal" || b.id == "goal"){
 		aXMod = 65;
 		bXMod = 65;
 	}
-	
-	
 	
 	var aX1 = parseInt(a.style.left) + aXMod;
 	var aY1 = parseInt(a.style.top);
@@ -301,5 +369,58 @@ function parallaxShift(direction){
 	$("#bg1").css("left", "+=" + (direction * 5));
 	$("#bg2").css("left", "+=" + (direction * 3));
 	$("#bg3").css("left", "+=" + (direction * 1));
+}
+
+//SPAWNERS
+function addLife(){
+	numLives++;
+	$("#lifebar").append("<img src='img/heart.gif' class='life' />")
+}
+
+function removeLife(){
+	if(numLives > 0){
+		numLives--;
+		$("#lifebar").children().last().remove();
+		level--;
+		nextLevel();
+	} else{
+		gameWindow.innerHTML = "<br><br><br>You Lose.";
+		$("#gameWindow").addClass("msgGameOver");
+	}
+}
+
+function addPlatform(x, y, w, h){
+	var platform = "<div class='platform' style='left:" + x + "px;" +
+												"top:" + y + "px;" +
+												"width:" + w + "px;" +
+												"height:" + h + "px;'></div>";
+	
+	$("#gameWindow").append($(platform));
+}
+
+//player throws a card
+function spawnCard(){
+	//spawn only if max cards not reached
+	if($(".card").length < 4){
+		var card = "<img class='card";
+		if(direction == -1){
+			card += " flyRight";
+		}else{
+			card += " flyLeft";
+		}
+		
+		card += "' src='img/card.gif' style='left:" + (parseInt($("#player").css("left")) + 25) + "px;" +
+				"top:" + (parseInt($("#player").css("top")) + 50) + "px; width: 32px; height: 32px;'/>";
+	
+		$("#gameWindow").append($(card));
+	}
+}
+
+function spawnEnemy(x, y, enemyType=""){
+	var enemy = "<img class='enemy " + enemyType + "' src='img/enemy_rat.gif' style='left:" + x + "px;" +
+																	"top:" + y + "px;" +
+																	"width:92px; height:62px;' />";
+	
+	$("#gameWindow").append($(enemy));
 }
 	

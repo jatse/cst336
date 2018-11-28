@@ -14,7 +14,7 @@ body{
 }
 
 .movingBG{
-	width: 2000px;
+	width: 4000px;
 	height: 536px;
 	position: absolute;
 	top: 0px;
@@ -66,4 +66,8 @@ body{
 	font-size: 50pt;
 	text-align: center;
 	color: white;
+}
+
+.card, .enemy{
+	position: absolute;
 }
