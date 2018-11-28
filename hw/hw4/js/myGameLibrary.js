@@ -36,6 +36,13 @@ document.addEventListener('keyup', function(event){
 	}
 });
 
+$(document).ready(function(){
+	$("#btnContinue").click(function(){
+		console.log("click");
+		location.reload();
+	});
+});
+
 //FUNCTIONS
 //initialize game
 function init(){
@@ -265,6 +272,8 @@ function gameloop(){
 		if(level == 3){
 			gameWindow.innerHTML = "<br><br><br>You Win!";
 			$("#gameWindow").addClass("msgGameOver");
+			$("#btnContinue").css("display", "block");
+			$("#controls").css("display", "none");
 		} else{
 			nextLevel();
 		}
@@ -468,6 +477,8 @@ function removeLife(){
 	} else{
 		gameWindow.innerHTML = "<br><br><br>You Lose.";
 		$("#gameWindow").addClass("msgGameOver");
+		$("#btnContinue").css("display", "block");
+		$("#controls").css("display", "none");
 	}
 }
 

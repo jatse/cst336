@@ -76,7 +76,7 @@
             </tr>
             <tr>
                 <td>
-                    <a href="#">Homework 4</a>
+                    <a href="hw/hw4">Homework 4</a>
                 </td>
                 <td>
                     <a href="labs/lab4">Lab 4</a>
