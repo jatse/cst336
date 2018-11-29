@@ -115,7 +115,7 @@
                 <td>
                 </td>
                 <td>
-                    <a href="#">Lab 8</a>
+                    <a href="labs/lab8">Lab 8</a>
                 </td>
                 <td>
                 </td>

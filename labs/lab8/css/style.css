@@ -1,0 +1,26 @@
+.carousel-inner img{
+    margin: auto;
+    height: 400px;
+}
+
+body{
+    text-align: center;
+}
+
+.nav-link{
+    color:white !important;
+}
+
+.petList{
+    margin: 0px auto 10px;
+    width: 260px;
+    height: 50px;
+    text-align: left;
+    border-bottom: 1px solid #aaa;
+}
+
+.petList button{
+    float: right;
+    display: inline;
+    margin-top: -42px;
+}
