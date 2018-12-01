@@ -3,7 +3,7 @@ var player;
 var walking = false;
 var onGround = false;
 var idle = false;
-var direction = -1;
+var direction = 1;
 var goal;
 var leftArrowDown = false;
 var rightArrowDown = false;
@@ -88,7 +88,7 @@ function gameloop(){
 		
 		if(!sideHit){
 			$("#goal, #player, .platform, .card, .enemy, #boss").css("left", "+=" + 5 + "px");
-			direction = 1;
+			direction = -1;
 			parallaxShift(direction);
 		} else {
 			$("#player").css("left", "+=" + 5 + "px");
@@ -112,7 +112,7 @@ function gameloop(){
 		
 		if(!sideHit){
 			$("#goal, #player, .platform, .card, .enemy, #boss").css("left", "-=" + 5 + "px");
-			direction = -1;
+			direction = 1;
 			parallaxShift(direction);
 		} else {
 			$("#player").css("left", "-=" + 5 + "px");
@@ -309,9 +309,9 @@ function nextLevel(){
 	//reposition player and background
 	$("#player").css("left", "190px");
 	$("#player").css("top", "50px");
-	$(".bg1").css("left", "1892px");
-	$(".bg2").css("left", "1261px");
-	$(".bg3").css("left", "946px");
+	$("#bg1").css("left", "-1892px");
+	$("#bg2").css("left", "-1261px");
+	$("#bg3").css("left", "-946px");
 	
 	//clear platforms, cards, and enemies
 	$(".platform").remove();
@@ -448,17 +448,17 @@ function hittest(a, b){
 
 //move background, infinitely
 function parallaxShift(direction){
-	$("#bg1").css("left", "+=" + (direction * 5));
-	if(parseInt($("#bg1").css("left")) > 3784){
-		$("#bg1").css("left", "-=" + 1892);	
+	$("#bg1").css("left", "+=" + (-direction * 5));
+	if(parseInt($("#bg1").css("left")) < -3784){
+		$("#bg1").css("left", "+=" + 1892);	
 	}
-	$("#bg2").css("left", "+=" + (direction * 3));
-	if(parseInt($("#bg2").css("left")) > 2522){
-		$("#bg1").css("left", "-=" + 1261);	
+	$("#bg2").css("left", "+=" + (-direction * 3));
+	if(parseInt($("#bg2").css("left")) < -2522){
+		$("#bg2").css("left", "+=" + 1261);	
 	}
-	$("#bg3").css("left", "+=" + (direction * 1));
-	if(parseInt($("#bg3").css("left")) > 1892){
-		$("#bg1").css("left", "-=" + 946);	
+	$("#bg3").css("left", "+=" + (-direction * 1));
+	if(parseInt($("#bg3").css("left")) < -1892){
+		$("#bg3").css("left", "+=" + 946);	
 	}
 }
 
@@ -496,7 +496,7 @@ function spawnCard(){
 	//spawn only if max cards not reached
 	if($(".card").length < 4){
 		var card = "<img class='card";
-		if(direction == -1){
+		if(direction == 1){
 			card += " flyRight";
 		}else{
 			card += " flyLeft";
