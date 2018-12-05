@@ -26,14 +26,6 @@
             echo "<span class='text-light'>)</span></div>";
             
         }
-        //----------------REMOVE USER CHECK IF NOT IN USE!!---------------------
-        else if(isset($_SESSION["userName"]) && $_SESSION["userName"] != false){
-            echo "<div class='nav-item px-3'>";
-            echo "<span class='text-light'>Hello " . $_SESSION["userName"] . "! (</span>";
-            echo "<a class='nav-link d-inline p-0' href='logout.php'>Logout</a>";
-            echo "<span class='text-light'>)</span></div>";
-            
-        }
         else{
             echo "<a class='nav-item nav-link px-3' href='login.php'>Login</a>";
         }
@@ -59,7 +51,7 @@
     
     function getCategories(){
         global $conn;
-        echo "<option value='0'>All</option>";
+        echo "<option>All</option>";
         
         $sql = "SELECT * FROM ProductCategories";
         
@@ -86,20 +78,35 @@
     //PRODUCT LIST
     function getProductList(){
         global $conn;
+        $param = array();
         
         $sql = "SELECT *";
-        // $sql .= ", COUNT(orderId) as popularity";
+        if($_GET["sort"] == "popular"){
+            $sql .= ", COUNT(orderId)";
+        }
         $sql .= " FROM Products";
-        // $sql .= " LEFT JOIN Orders USING productId";
-        // $sql .= " GROUP BY productId";
-        // $sql .= " WHERE catId =" . $_GET["category"];
-        // $sql .= " ORDER BY productId";
-        // $sql .= " ORDER BY COUNT(orderId)";
-        // $sql .= " ORDER BY price ASC";
-        // $sql .= " ORDER BY price DESC";
-        
+        if($_GET["sort"] == "popular"){
+            $sql .= " LEFT JOIN Orders USING (productId) GROUP BY productId";
+        }
+        if(isset($_GET["category"]) && is_numeric($_GET["category"])){
+            $sql .= " WHERE catId = :category";
+            $param[":category"] = $_GET["category"];
+        }
+        if(isset($_GET["sort"]) && $_GET["sort"] == "id"){
+            $sql .= " ORDER BY productId";
+        }
+        if($_GET["sort"] == "popular"){
+            $sql .= " ORDER BY COUNT(orderId) DESC";
+        }
+        if(isset($_GET["sort"]) && $_GET["sort"] == "valueASC"){
+            $sql .= " ORDER BY price ASC";
+        }
+        if(isset($_GET["sort"]) && $_GET["sort"] == "valueDESC"){
+            $sql .= " ORDER BY price DESC";
+        }
+       
         $stmt = $conn->prepare($sql);
-        $stmt->execute();
+        $stmt->execute($param);
         $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         foreach($products as $product){
@@ -111,12 +118,12 @@
             //Product container
             echo "<div id='product" . $product["productId"] . "' class='col col-lg-4 col-md-6 mb-1'>";
             //Inner spacing
-            echo "<div class='row align-items-end p-2 m-1 rounded";
+            echo "<div class='row align-items-end p-2 m-1 rounded h-100";
             if($inCart){echo " bg-success";}
             else{echo " border border-primary";}
             //Image
             echo "'><span class='col-9 col-md-4 text-center my-auto'>";
-            echo "<img src='img/testIcon.jpg'>";
+            echo "<img src='img/" . $product["catId"] . ".png'>";
             //Button
             echo "<button form='mainForm' type='submit' class='mt-1 w-100 btn btn-sm small";
             if($inCart){echo " btn-outline light disabled'>Added";}
@@ -226,7 +233,7 @@
         <!--JUMBOTRON-->
         <div class="jumbotron jumbotron-fluid text-light text-center mb-0">
             <h1 class="display-3 mt-5 pt-5">Sustainable solutions for scalable needs</h1>
-            <h1 class="lead text-white">Sign up today and get 500mb of free storage</h1>
+            <h1 class="lead text-white">Sign up today and get 1gb of free storage</h1>
             <a class="btn btn-primary btn-lg mt-5 px-5" href="#productSearchBar" role="button">Get Started</a>
         </div>
         

@@ -1,0 +1,59 @@
+[03-Dec-2018 06:37:39 UTC] PHP Warning:  include(../dbConnection.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/cst336/final_project/admin.php on line 7
+[03-Dec-2018 06:37:39 UTC] PHP Stack trace:
+[03-Dec-2018 06:37:39 UTC] PHP   1. {main}() /home/ubuntu/workspace/cst336/final_project/admin.php:0
+[03-Dec-2018 06:37:39 UTC] PHP Warning:  include(): Failed opening '../dbConnection.php' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/cst336/final_project/admin.php on line 7
+[03-Dec-2018 06:37:39 UTC] PHP Stack trace:
+[03-Dec-2018 06:37:39 UTC] PHP   1. {main}() /home/ubuntu/workspace/cst336/final_project/admin.php:0
+[03-Dec-2018 06:37:39 UTC] PHP Fatal error:  Call to undefined function getDatabaseConnection() in /home/ubuntu/workspace/cst336/final_project/admin.php on line 8
+[03-Dec-2018 06:37:39 UTC] PHP Stack trace:
+[03-Dec-2018 06:37:39 UTC] PHP   1. {main}() /home/ubuntu/workspace/cst336/final_project/admin.php:0
+[03-Dec-2018 07:12:28 UTC] PHP Fatal error:  Call to a member function execute() on a non-object in /home/ubuntu/workspace/cst336/final_project/index.php on line 104
+[03-Dec-2018 07:12:28 UTC] PHP Stack trace:
+[03-Dec-2018 07:12:28 UTC] PHP   1. {main}() /home/ubuntu/workspace/cst336/final_project/index.php:0
+[03-Dec-2018 07:12:28 UTC] PHP   2. getProductList() /home/ubuntu/workspace/cst336/final_project/index.php:266
+[03-Dec-2018 07:16:24 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1' in /home/ubuntu/workspace/cst336/final_project/index.php:107
+Stack trace:
+#0 /home/ubuntu/workspace/cst336/final_project/index.php(107): PDOStatement->execute(Array)
+#1 /home/ubuntu/workspace/cst336/final_project/index.php(269): getProductList()
+#2 {main}
+  thrown in /home/ubuntu/workspace/cst336/final_project/index.php on line 107
+[03-Dec-2018 07:17:06 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1' in /home/ubuntu/workspace/cst336/final_project/index.php:108
+Stack trace:
+#0 /home/ubuntu/workspace/cst336/final_project/index.php(108): PDOStatement->execute(Array)
+#1 /home/ubuntu/workspace/cst336/final_project/index.php(270): getProductList()
+#2 {main}
+  thrown in /home/ubuntu/workspace/cst336/final_project/index.php on line 108
+[03-Dec-2018 07:17:58 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE catId =All' at line 1' in /home/ubuntu/workspace/cst336/final_project/index.php:108
+Stack trace:
+#0 /home/ubuntu/workspace/cst336/final_project/index.php(108): PDOStatement->execute(Array)
+#1 /home/ubuntu/workspace/cst336/final_project/index.php(270): getProductList()
+#2 {main}
+  thrown in /home/ubuntu/workspace/cst336/final_project/index.php on line 108
+[03-Dec-2018 07:18:10 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1' in /home/ubuntu/workspace/cst336/final_project/index.php:108
+Stack trace:
+#0 /home/ubuntu/workspace/cst336/final_project/index.php(108): PDOStatement->execute(Array)
+#1 /home/ubuntu/workspace/cst336/final_project/index.php(270): getProductList()
+#2 {main}
+  thrown in /home/ubuntu/workspace/cst336/final_project/index.php on line 108
+[03-Dec-2018 07:18:52 UTC] PHP Fatal error:  Call to undefined function isempty() in /home/ubuntu/workspace/cst336/final_project/index.php on line 96
+[03-Dec-2018 07:18:52 UTC] PHP Stack trace:
+[03-Dec-2018 07:18:52 UTC] PHP   1. {main}() /home/ubuntu/workspace/cst336/final_project/index.php:0
+[03-Dec-2018 07:18:52 UTC] PHP   2. getProductList() /home/ubuntu/workspace/cst336/final_project/index.php:270
+[03-Dec-2018 07:19:08 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1' in /home/ubuntu/workspace/cst336/final_project/index.php:108
+Stack trace:
+#0 /home/ubuntu/workspace/cst336/final_project/index.php(108): PDOStatement->execute(Array)
+#1 /home/ubuntu/workspace/cst336/final_project/index.php(270): getProductList()
+#2 {main}
+  thrown in /home/ubuntu/workspace/cst336/final_project/index.php on line 108
+[05-Dec-2018 03:42:17 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'productId GROUP BY productId ORDER BY COUNT(orderId)' at line 1' in /home/ubuntu/workspace/cst336/final_project/index.php:118
+Stack trace:
+#0 /home/ubuntu/workspace/cst336/final_project/index.php(118): PDOStatement->execute(Array)
+#1 /home/ubuntu/workspace/cst336/final_project/index.php(280): getProductList()
+#2 {main}
+  thrown in /home/ubuntu/workspace/cst336/final_project/index.php on line 118
+[05-Dec-2018 03:43:03 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'productId GROUP BY productId ORDER BY COUNT(orderId)' at line 1' in /home/ubuntu/workspace/cst336/final_project/index.php:118
+Stack trace:
+#0 /home/ubuntu/workspace/cst336/final_project/index.php(118): PDOStatement->execute(Array)
+#1 /home/ubuntu/workspace/cst336/final_project/index.php(280): getProductList()
+#2 {main}
+  thrown in /home/ubuntu/workspace/cst336/final_project/index.php on line 118
