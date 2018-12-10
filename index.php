@@ -51,7 +51,7 @@
                     <a href="labs/lab1">Lab 1</a>
                 </td>
                 <td>
-                    <a href="#">Final</a>
+                    <a href="final_project/">Final</a>
                 </td>
             </tr>
             <tr>

@@ -1,6 +1,6 @@
 <?php
 
-function getDatabaseConnection($dbname = 'FinalProject'){
+function getDatabaseConnection($dbname = 'PelicanCloudSolutions'){
     $host='localhost';
     $username='root';
     $password='';

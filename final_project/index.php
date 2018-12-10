@@ -2,7 +2,7 @@
     //get session variables and db connection
     session_start();
     include "dbConnection.php";
-    $conn = getDatabaseConnection("FinalProject");
+    $conn = getDatabaseConnection();
     
     //initialize cart
     if(!isset($_SESSION["cart"])){
@@ -19,9 +19,18 @@
     //NAVBAR FUNCTIONS
     //Displays user/admin name
     function displayLoginStatus(){
+        //---CHECKING ADMIN LOGIN---------------------
         if(isset($_SESSION["adminName"]) && $_SESSION["adminName"] != false){
             echo "<div class='nav-item px-3'>";
-            echo "<span class='text-light'>Hello " . $_SESSION["adminName"] . "! (</span>";
+            echo "<span class='text-light'>Hello ";
+            if(!$_SESSION["customer"]){
+                echo "<a class='text-light' href='admin.php'>";
+            }
+            echo $_SESSION["adminName"];
+            if(!$_SESSION["customer"]){
+                echo "</a>";
+            }
+            echo "! (</span>";
             echo "<a class='nav-link d-inline p-0' href='logout.php'>Logout</a>";
             echo "<span class='text-light'>)</span></div>";
             

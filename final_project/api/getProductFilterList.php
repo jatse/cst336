@@ -1,6 +1,6 @@
 <?php
     include "../dbConnection.php";
-    $conn = getDatabaseConnection("FinalProject");
+    $conn = getDatabaseConnection();
     
     $sql = "SELECT productId FROM Products WHERE productDescription LIKE :keyword";
     
