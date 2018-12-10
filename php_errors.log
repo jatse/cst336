@@ -104,3 +104,33 @@ Stack trace:
 #1 /home/ubuntu/workspace/cst336/final_project/index.php(281): getProductList()
 #2 {main}
   thrown in /home/ubuntu/workspace/cst336/final_project/index.php on line 119
+[10-Dec-2018 06:24:40 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`PelicanCloudSolutions`.`Orders`, CONSTRAINT `fk_Orders_Tiers1` FOREIGN KEY (`productId`) REFERENCES `Products` (`productId`) ON DELETE NO ACTION ON UPDATE NO ACTION)' in /home/ubuntu/workspace/cst336/final_project/deleteProduct.php:17
+Stack trace:
+#0 /home/ubuntu/workspace/cst336/final_project/deleteProduct.php(17): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/cst336/final_project/deleteProduct.php on line 17
+[10-Dec-2018 06:34:40 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`PelicanCloudSolutions`.`Orders`, CONSTRAINT `fk_Orders_Tiers1` FOREIGN KEY (`productId`) REFERENCES `Products` (`productId`) ON DELETE NO ACTION ON UPDATE NO ACTION)' in /home/ubuntu/workspace/cst336/final_project/deleteProduct.php:27
+Stack trace:
+#0 /home/ubuntu/workspace/cst336/final_project/deleteProduct.php(27): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/cst336/final_project/deleteProduct.php on line 27
+[10-Dec-2018 06:35:22 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`PelicanCloudSolutions`.`Orders`, CONSTRAINT `fk_Orders_Tiers1` FOREIGN KEY (`productId`) REFERENCES `Products` (`productId`) ON DELETE NO ACTION ON UPDATE NO ACTION)' in /home/ubuntu/workspace/cst336/final_project/deleteProduct.php:27
+Stack trace:
+#0 /home/ubuntu/workspace/cst336/final_project/deleteProduct.php(27): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/cst336/final_project/deleteProduct.php on line 27
+[10-Dec-2018 06:35:24 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`PelicanCloudSolutions`.`Orders`, CONSTRAINT `fk_Orders_Tiers1` FOREIGN KEY (`productId`) REFERENCES `Products` (`productId`) ON DELETE NO ACTION ON UPDATE NO ACTION)' in /home/ubuntu/workspace/cst336/final_project/deleteProduct.php:27
+Stack trace:
+#0 /home/ubuntu/workspace/cst336/final_project/deleteProduct.php(27): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/cst336/final_project/deleteProduct.php on line 27
+[10-Dec-2018 06:35:48 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`PelicanCloudSolutions`.`Orders`, CONSTRAINT `fk_Orders_Tiers1` FOREIGN KEY (`productId`) REFERENCES `Products` (`productId`) ON DELETE NO ACTION ON UPDATE NO ACTION)' in /home/ubuntu/workspace/cst336/final_project/deleteProduct.php:27
+Stack trace:
+#0 /home/ubuntu/workspace/cst336/final_project/deleteProduct.php(27): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/cst336/final_project/deleteProduct.php on line 27
+[10-Dec-2018 06:36:23 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`PelicanCloudSolutions`.`Orders`, CONSTRAINT `fk_Orders_Tiers1` FOREIGN KEY (`productId`) REFERENCES `Products` (`productId`) ON DELETE NO ACTION ON UPDATE NO ACTION)' in /home/ubuntu/workspace/cst336/final_project/deleteProduct.php:28
+Stack trace:
+#0 /home/ubuntu/workspace/cst336/final_project/deleteProduct.php(28): PDOStatement->execute()
+#1 {main}
+  thrown in /home/ubuntu/workspace/cst336/final_project/deleteProduct.php on line 28
