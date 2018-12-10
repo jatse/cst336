@@ -92,3 +92,15 @@ Stack trace:
 [10-Dec-2018 04:50:03 UTC] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/ubuntu/workspace/cst336/final_project/addProduct.php on line 74
 [10-Dec-2018 04:50:06 UTC] PHP Parse error:  syntax error, unexpected '}', expecting ',' or ';' in /home/ubuntu/workspace/cst336/final_project/addProduct.php on line 74
 [10-Dec-2018 04:59:50 UTC] PHP Parse error:  syntax error, unexpected '$np' (T_VARIABLE) in /home/ubuntu/workspace/cst336/final_project/updateProduct.php on line 77
+[10-Dec-2018 05:21:07 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE catId = '1' ORDER BY COUNT(orderId) DESC' at line 1' in /home/ubuntu/workspace/cst336/final_project/index.php:119
+Stack trace:
+#0 /home/ubuntu/workspace/cst336/final_project/index.php(119): PDOStatement->execute(Array)
+#1 /home/ubuntu/workspace/cst336/final_project/index.php(281): getProductList()
+#2 {main}
+  thrown in /home/ubuntu/workspace/cst336/final_project/index.php on line 119
+[10-Dec-2018 05:24:17 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY093]: Invalid parameter number: parameter was not defined' in /home/ubuntu/workspace/cst336/final_project/index.php:119
+Stack trace:
+#0 /home/ubuntu/workspace/cst336/final_project/index.php(119): PDOStatement->execute(Array)
+#1 /home/ubuntu/workspace/cst336/final_project/index.php(281): getProductList()
+#2 {main}
+  thrown in /home/ubuntu/workspace/cst336/final_project/index.php on line 119

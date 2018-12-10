@@ -95,17 +95,17 @@
         }
         $sql .= " FROM Products";
         if($_GET["sort"] == "popular"){
-            $sql .= " LEFT JOIN Orders USING (productId) GROUP BY productId";
+            $sql .= " LEFT JOIN Orders USING (productId)";
         }
         if(isset($_GET["category"]) && is_numeric($_GET["category"])){
             $sql .= " WHERE catId = :category";
             $param[":category"] = $_GET["category"];
         }
+        if($_GET["sort"] == "popular"){
+            $sql .= " GROUP BY productId ORDER BY COUNT(orderId) DESC";
+        }
         if(isset($_GET["sort"]) && $_GET["sort"] == "id"){
             $sql .= " ORDER BY productId";
-        }
-        if($_GET["sort"] == "popular"){
-            $sql .= " ORDER BY COUNT(orderId) DESC";
         }
         if(isset($_GET["sort"]) && $_GET["sort"] == "valueASC"){
             $sql .= " ORDER BY price ASC";
